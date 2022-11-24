@@ -4,7 +4,7 @@ export const get = async ({url, options = {}}) => {
     ...options
   }
 
-  return await fetch(url, requestOptions);
+  return await fetch(url, requestOptions).then(response => response.json());
 }
 
 export const post = async ({url, body = {}, options = {}}) => {
