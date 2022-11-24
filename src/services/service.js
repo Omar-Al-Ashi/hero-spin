@@ -4,7 +4,7 @@ export const get = async ({url, options = {}}) => {
     ...options
   }
 
-  return await fetch(url, requestOptions)
+  return await fetch(url, requestOptions);
 }
 
 export const post = async ({url, body = {}, options = {}}) => {
@@ -14,5 +14,5 @@ export const post = async ({url, body = {}, options = {}}) => {
     body: JSON.stringify(body)
   }
 
-  return await fetch(url, requestOptions)
+  return await fetch(url, requestOptions);
 }

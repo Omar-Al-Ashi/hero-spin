@@ -1,6 +1,7 @@
 import {get, post} from './service'
-import endpoints from './endpoints';
+import {omdbKeyConstructor} from './urlConstructor'
 
-export const getAllMovies = () => {
-  return get({url: endpoints.omdb})
+export const searchForAMovie = (searchItem) => {
+  let url = `${omdbKeyConstructor()}&s=${searchItem}`;
+  return get({url})
 }

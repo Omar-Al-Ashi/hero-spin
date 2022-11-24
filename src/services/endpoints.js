@@ -1,3 +1,3 @@
 export default {
-  movies: "",
+  omdb: "https://www.omdbapi.com",
 }
