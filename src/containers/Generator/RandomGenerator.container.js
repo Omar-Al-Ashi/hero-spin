@@ -4,19 +4,20 @@ import './RandomGenerator.container.css'
 import {searchForAMovie} from "../../services/API";
 import Card from "../../components/Card";
 import 'primeflex/primeflex.css';
-import {debounce} from "../../Helpers/Helpers";
+import {debounce, getARandomNumber} from "../../Helpers/Helpers";
 
 const Generator = () => {
   let navigate = useNavigate();
 
-  const [moviesList, setMoviesList] = useState([])
+  const [moviesList, setMoviesList] = useState()
 
   const generateRandomMovie = async () => {
     // TODO generate random RANDOM movie rather than only for iron man
     const randomMovieResponse = await searchForAMovie("SuperMan")
     const data = await randomMovieResponse.json();
     const moviesArray = await data?.Search;
-    setMoviesList(() => moviesArray?.length > 0 ? moviesArray : [])
+    const randomMovieIndex = getARandomNumber(moviesArray?.length)
+    setMoviesList(() => moviesArray?.length > 0 ? moviesArray[randomMovieIndex] : null)
   }
 
   const cardClicked = (movie) => {
@@ -30,16 +31,15 @@ const Generator = () => {
       <button onClick={() => generateButtonClicked()}>Generate A Random Movie</button>
 
       <div className='main-container'>
-        {moviesList?.length > 0 ? moviesList.map(movie => {
-          return (
-            <div onClick={() => cardClicked(movie)}>
-              <Card
-                headerText={movie.Title}
-                subTitle={movie.Type}
-                image={movie.Poster}
-              />
-            </div>) // TODO remove the initial rendering of this
-        }) : <div> We couldn't recommend anything for you that matches your search </div>}
+        {moviesList ?
+          <div onClick={() => cardClicked(moviesList)}>
+            <Card
+              headerText={moviesList.Title}
+              subTitle={moviesList.Type}
+              image={moviesList.Poster}
+            />
+          </div> : <div>Nothing to show</div>
+        }
       </div>
     </div>)
 }
