@@ -1,5 +1,19 @@
+import {v4 as uuidv4} from "uuid";
+
 export default {
   apiKey: 'a2526df0',
+  pages: [
+    {
+      id: uuidv4,
+      link: '/generate/random',
+      name: 'Random Generator Page',
+    },
+    {
+      id: uuidv4,
+      link: '/generate/select',
+      name: 'Select Your Hero Generator Page',
+    },
+  ],
   superheros: [
     {
       superhero: 'Batman',
