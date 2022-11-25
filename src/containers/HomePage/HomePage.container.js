@@ -1,21 +1,10 @@
 import React from 'react';
 import './HomePage.container.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import { v4 as uuidv4 } from 'uuid';
+import constants from '../../constants/constants';
 
 const HomePage = () => {
-  const pages = [
-    {
-      id: uuidv4,
-      link: '/generate/random',
-      name: 'Random Generator Page',
-    },
-    {
-      id: uuidv4,
-      link: '/generate/select',
-      name: 'Select Your Hero Generator Page',
-    },
-  ];
+  const pages = constants.pages;
 
   return (
     <div className='pages-selector-grid'>

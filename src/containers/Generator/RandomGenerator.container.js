@@ -32,7 +32,7 @@ const Generator = () => {
 
   return (
     <>
-      <button onClick={() => generateButtonClicked()}>
+      <button className='button__generate' onClick={() => generateButtonClicked()}>
         {isLoading ? 'Loading ...' : 'Generate A Random Movie'}
       </button>
       <div className='main-container'>
