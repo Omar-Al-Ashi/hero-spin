@@ -5,30 +5,39 @@ import {debounce, getARandomNumber} from "../../Helpers/Helpers";
 import {searchForAMovie} from "../../services/API";
 import Card from "../../components/Card";
 import {useNavigate} from "react-router-dom";
+import {ProgressSpinner} from 'primereact/progressspinner';
+
 
 const Generator = () => {
   let navigate = useNavigate();
 
-  const [moviesList, setMoviesList] = useState()
-
-  const getMovie = async (event) => {
-    let inputValue = event.target.value;
-    const randomMovieResponse = inputValue != '' && await searchForAMovie(inputValue)
-    const data = await randomMovieResponse.json();
-    const moviesArray = await data?.Search;
-    const randomMovieIndex = getARandomNumber(moviesArray?.length)
-    setMoviesList(() => moviesArray?.length > 0 ? moviesArray[randomMovieIndex] : null)
-  }
+  const [movie, setMovie] = useState()
+  const [isLoading, setIsLoading] = useState(false)
 
   const onInputChange = debounce((event) => getMovie(event), 1000);
+
+  const getMovie = async (event) => {
+    setIsLoading(() => true)
+    let inputValue = event.target.value;
+    const randomMovieResponse = inputValue != '' && await searchForAMovie(inputValue)
+    const moviesArray = await randomMovieResponse?.Search;
+    const randomMovieIndex = getARandomNumber(moviesArray?.length)
+    setIsLoading(false)
+    setMovie(() => moviesArray?.length > 0 ? moviesArray[randomMovieIndex] : null)
+  }
 
   const cardClicked = (movie) => {
     navigate("/details", {state: movie});
   }
 
+  const renderIsLoading = () => {
+    return isLoading && <ProgressSpinner/>
+  }
+
   return (
     <div>
       <Search onInputChange={onInputChange}/>
+      {renderIsLoading()}
       <div className='main-container'>
         {movie ?
           <div onClick={() => cardClicked(movie)}>

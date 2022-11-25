@@ -5,19 +5,23 @@ import {searchForAMovie} from "../../services/API";
 import Card from "../../components/Card";
 import 'primeflex/primeflex.css';
 import {debounce, getARandomNumber} from "../../Helpers/Helpers";
+import constants from "../../constants/constants";
 
 const Generator = () => {
   let navigate = useNavigate();
 
-  const [moviesList, setMoviesList] = useState()
+  const [movie, setMovie] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+
 
   const generateRandomMovie = async () => {
-    // TODO generate random RANDOM movie rather than only for iron man
-    const randomMovieResponse = await searchForAMovie("SuperMan")
-    const data = await randomMovieResponse.json();
-    const moviesArray = await data?.Search;
+    setIsLoading(() => true)
+    const randomSuperHeroMovie = constants.superheros[getARandomNumber(constants.superheros.length)].superhero
+    const randomMovieResponse = await searchForAMovie(randomSuperHeroMovie)
+    const moviesArray = await randomMovieResponse?.Search;
     const randomMovieIndex = getARandomNumber(moviesArray?.length)
-    setMoviesList(() => moviesArray?.length > 0 ? moviesArray[randomMovieIndex] : null)
+    setIsLoading(false)
+    setMovie(() => moviesArray?.length > 0 ? moviesArray[randomMovieIndex] : null)
   }
 
   const cardClicked = (movie) => {
