@@ -1,7 +1,8 @@
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   apiKey: 'a2526df0',
+  superheroapiKey: '10227962235657918',
   pages: [
     {
       id: uuidv4,
