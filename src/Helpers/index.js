@@ -1,3 +1,3 @@
-import Helpers from './Helpers'
+import Helpers from './Helpers';
 
 export default Helpers;

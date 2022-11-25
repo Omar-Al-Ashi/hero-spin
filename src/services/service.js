@@ -1,18 +1,18 @@
-export const get = async ({url, options = {}}) => {
+export const get = async ({ url, options = {} }) => {
   const requestOptions = {
     method: 'GET',
-    ...options
-  }
+    ...options,
+  };
 
-  return await fetch(url, requestOptions).then(response => response.json());
-}
+  return await fetch(url, requestOptions).then((response) => response.json());
+};
 
-export const post = async ({url, body = {}, options = {}}) => {
+export const post = async ({ url, body = {}, options = {} }) => {
   const requestOptions = {
     method: 'POST',
-    headers: {...options},
-    body: JSON.stringify(body)
-  }
+    headers: { ...options },
+    body: JSON.stringify(body),
+  };
 
   return await fetch(url, requestOptions);
-}
+};

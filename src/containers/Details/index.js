@@ -1,2 +1,2 @@
-import Details from "./Details.container";
+import Details from './Details.container';
 export default Details;

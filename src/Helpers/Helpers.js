@@ -6,8 +6,8 @@ export const debounce = (func, timeout = 1000) => {
       func.apply(this, args);
     }, timeout);
   };
-}
+};
 
 export const getARandomNumber = (max) => {
   return Math.floor(Math.random() * max);
-}
+};
