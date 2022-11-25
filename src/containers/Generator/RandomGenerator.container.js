@@ -27,21 +27,20 @@ const Generator = () => {
   const generateButtonClicked = debounce(() => generateRandomMovie(), 1000);
 
   return (
-    <div>
-      <button onClick={() => generateButtonClicked()}>Generate A Random Movie</button>
-
+    <>
+      <button onClick={() => generateButtonClicked()}>{isLoading ? 'Loading ...' : 'Generate A Random Movie'}</button>
       <div className='main-container'>
-        {moviesList ?
-          <div onClick={() => cardClicked(moviesList)}>
-            <Card
-              headerText={moviesList.Title}
-              subTitle={moviesList.Type}
-              image={moviesList.Poster}
-            />
-          </div> : <div>Nothing to show</div>
+        {movie ?
+          <Card
+            cardClicked={() => cardClicked(movie)}
+            headerText={movie.Title}
+            subTitle={movie.Type}
+            image={movie.Poster}
+          />
+          : <div>Nothing to show</div>
         }
       </div>
-    </div>)
+    </>)
 }
 
 export default Generator;

@@ -30,14 +30,15 @@ const Generator = () => {
     <div>
       <Search onInputChange={onInputChange}/>
       <div className='main-container'>
-        {moviesList ?
-          <div onClick={() => cardClicked(moviesList)}>
+        {movie ?
+          <div onClick={() => cardClicked(movie)}>
             <Card
-              headerText={moviesList.Title}
-              subTitle={moviesList.Type}
-              image={moviesList.Poster}
+              headerText={movie.Title}
+              subTitle={movie.Type}
+              image={movie.Poster}
             />
-          </div> : <div>Nothing to show</div>
+          </div>
+          : <div>Nothing to show</div>
         }
       </div>
     </div>
