@@ -34,19 +34,22 @@ const Generator = () => {
   };
 
   return (
-    <div>
+    <>
       <Search onInputChange={onInputChange} />
       {renderIsLoading()}
       <div className='main-container'>
         {movie ? (
-          <div onClick={() => cardClicked(movie)}>
-            <Card headerText={movie.Title} subTitle={movie.Type} image={movie.Poster} />
-          </div>
+          <Card
+            cardClicked={() => cardClicked(movie)}
+            headerText={movie.Title}
+            subTitle={movie.Type}
+            image={movie.Poster}
+          />
         ) : (
           <div>Nothing to show</div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
